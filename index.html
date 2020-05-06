@@ -33,86 +33,14 @@
       <button type="button" class="btn btn-secondary">End turn</button>
     
       <div class="playboardcontainer">
-        <div class="playboard">
-            <div class="playcart">
-               <p class="playcartword">ANDROID</p>
-            </div>
-            <div class="playcart">
-               <p class="playcartword">ANDROID</p>
-            </div>
-            <div class="playcart">
-               <p class="playcartword">ANDROID</p>
-            </div>
-            <div class="playcart">
-               <p class="playcartword">ANDROID</p>
-            </div> 
-            <div class="playcart">
-               <p class="playcartword">ANDROID</p>
-            </div> 
-   
-            <div class="playcart">
-               <p class="playcartword">ANDROID</p>
-            </div>
-            <div class="playcart">
-               <p class="playcartword">ANDROID</p>
-            </div>
-            <div class="playcart">
-               <p class="playcartword">ANDROID</p>
-            </div>
-            <div class="playcart">
-               <p class="playcartword">ANDROID</p>
-            </div> 
-            <div class="playcart">
-               <p class="playcartword">ANDROID</p>
-            </div> 
-   
-            <div class="playcart">
-               <p class="playcartword">ANDROID</p>
-            </div>
-            <div class="playcart">
-               <p class="playcartword">ANDROID</p>
-            </div>
-            <div class="playcart">
-               <p class="playcartword">ANDROID</p>
-            </div>
-            <div class="playcart">
-               <p class="playcartword">ANDROID</p>
-            </div> 
-            <div class="playcart">
-               <p class="playcartword">ANDROID</p>
-            </div> 
-   
-            <div class="playcart">
-               <p class="playcartword">ANDROID</p>
-            </div>
-            <div class="playcart">
-               <p class="playcartword">ANDROID</p>
-            </div>
-            <div class="playcart">
-               <p class="playcartword">ANDROID</p>
-            </div>
-            <div class="playcart">
-               <p class="playcartword">ANDROID</p>
-            </div> 
-            <div class="playcart">
-               <p class="playcartword">ANDROID</p>
-            </div> 
-   
-            <div class="playcart">
-               <p class="playcartword">ANDROID</p>
-            </div>
-            <div class="playcart">
-               <p class="playcartword">ANDROID</p>
-            </div>
-            <div class="playcart">
-               <p class="playcartword">ANDROID</p>
-            </div>
-            <div class="playcart">
-               <p class="playcartword">ANDROID</p>
-            </div> 
-            <div class="playcart">
-               <p class="playcartword">ANDROID</p>
-            </div> 
+
+        <div class="playboard" id="playboard">
+
+            <script>
+               for(let i = 0; i < 25; i++){
+                  document.getElementById('playboard').innerHTML += '<div class="playcart"><p class="playcartword">ANDROID</p></div>'
+               }
+            </script>
          </div>     
       </div>
       

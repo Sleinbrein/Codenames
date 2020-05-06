@@ -12,11 +12,14 @@
     float: left;
     width: 150px;
     height: 150px;
-    background-color: crimson;
+    background-color: #add8e6;
     border-radius: 20%;
     margin: 3px;
 }
+.playcart:hover{
+    cursor: pointer;
+}
 
 .playcartword{
-    line-height: 17vh;
+    line-height: 150px;
 }
