@@ -1,13 +1,22 @@
-.playboard{
+.playboardcontainer{
     width: 100%;
-    background-color: cornsilk;
+}
 
+.playboard{
+    margin: 0 auto;
+    width: 90vh;
 }
 
 .playcart{
-    width: 200px;
-    height: 200px;
+    text-align: center;
+    float: left;
+    width: 150px;
+    height: 150px;
     background-color: crimson;
     border-radius: 20%;
     margin: 3px;
+}
+
+.playcartword{
+    line-height: 17vh;
 }
