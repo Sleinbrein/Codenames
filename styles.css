@@ -1,0 +1,13 @@
+.playboard{
+    width: 100%;
+    background-color: cornsilk;
+
+}
+
+.playcart{
+    width: 200px;
+    height: 200px;
+    background-color: crimson;
+    border-radius: 20%;
+    margin: 3px;
+}
