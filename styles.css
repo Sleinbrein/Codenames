@@ -1,3 +1,7 @@
+body{
+    background-color: #121212;
+}
+
 .playboardcontainer{
     width: 100%;
 }
@@ -20,8 +24,32 @@
 }
 .playcart:hover{
     cursor: pointer;
+    animation: playcartclick 1s;
 }
+
+.playcart:active{
+    border-radius: 100%;
+}
+
 
 .playcartword{
     line-height: 150px;
+}
+
+
+
+@keyframes playcartclick{
+    0%{
+        border-radius: 20%;
+        transform: rotate(0deg);
+    }
+    60%{
+        border-radius: 50%;
+        transform: rotate(180deg);
+        background-color: whitesmoke;
+    }
+    100%{
+        border-radius: 20%;
+        transform: rotate(360deg);
+    }
 }
