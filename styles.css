@@ -11,8 +11,8 @@ body{
     width: 90vh;
 }
 
-.playcart{
-    color: white;
+#playcart{
+    color: black;
     font-family: 'Roboto', sans-serif;
     text-align: center;
     float: left;
@@ -22,13 +22,9 @@ body{
     border-radius: 20%;
     margin: 3px;
 }
-.playcart:hover{
+#playcart:hover{
     cursor: pointer;
-    animation: playcartclick 1s;
-}
-
-.playcart:active{
-    border-radius: 100%;
+    /* animation: playcartclick 1s; */
 }
 
 
@@ -37,7 +33,19 @@ body{
 }
 
 
+.omgedraaid{
+    background-color: #ecf0f1    !important;
+    color: black;
 
+    /* custom background image when tile is turned */
+
+    /* background-image: url("tile3.png");
+    background-repeat: no-repeat;
+    background-size: 150px 150px;
+    background-color: #34495e   !important; */
+}
+
+/* 
 @keyframes playcartclick{
     0%{
         border-radius: 20%;
@@ -52,4 +60,4 @@ body{
         border-radius: 20%;
         transform: rotate(360deg);
     }
-}
+} */

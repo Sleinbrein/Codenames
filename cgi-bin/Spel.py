@@ -16,6 +16,9 @@ class Spel:
     # bijhouden welk team (ROOD | BLAUW) er momenteel aan de beurt is
     currentTeam = ''
 
+    #bijhouden wie de winnaar is
+    winner = ''
+
     def __init__(self):
         self.createGameCode(8)
         print(f"Het spel wordt gestart met code {self.gamecode}")
@@ -28,7 +31,7 @@ class Spel:
             woordendata = file.read()
         lines = woordendata.splitlines()
 
-        for i in range(25):
+        for _ in range(25):
             self.wordlist.append(lines[random.randrange(0, len(lines))])
 
         return self.wordlist
@@ -95,8 +98,21 @@ class Spel:
             json.dump(verzenden, fileoutput)
 
 
+    def getJson(self):
+        with open('data/' + self.gamecode + '.json') as file:
+            data = json.load(file)
+
+            #update variables
+            self.bord = data['board']
+            self.winner = data['winner']
+            self.currentTeam = data['current_color']
+
+            print(f"Het bord: {self.bord}\nWie is er aan de beurt: {self.currentTeam}\nWie heeft er gewonnen: {self.winner}")
+
+
 spel = Spel()
 spel.getWordList()
 spel.asignColor()
 print(spel.everythingUnvisible())
 spel.toJson()
+print(f"Het speljson file: {spel.getJson()}")
