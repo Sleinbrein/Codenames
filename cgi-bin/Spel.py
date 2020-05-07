@@ -52,10 +52,19 @@ class Spel:
             )
 
         # geef het andere team 8 woorden in hun kleur
-        for i in range(8, 25):
+        for i in range(9, 17):
             self.bord.append(
                 [self.wordlist[i], secondTeam]
             )
+
+        # 7 neutrale tegels
+        for i in range(17,24):
+            self.bord.append(
+                [self.wordlist[i], "#8B9FB3"]
+            )
+
+        # laatste tegel is de spymaster
+        self.bord.append([self.wordlist[24], "#2d3436"])
 
         return self.bord
 
@@ -89,5 +98,5 @@ class Spel:
 spel = Spel()
 spel.getWordList()
 spel.asignColor()
-spel.everythingUnvisible()
+print(spel.everythingUnvisible())
 spel.toJson()

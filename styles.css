@@ -8,11 +8,13 @@
 }
 
 .playcart{
+    color: white;
+    font-family: 'Roboto', sans-serif;
     text-align: center;
     float: left;
     width: 150px;
     height: 150px;
-    background-color: #add8e6;
+    /* background-color: #add8e6; */
     border-radius: 20%;
     margin: 3px;
 }

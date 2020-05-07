@@ -6,6 +6,7 @@
       <title>Codenames</title>
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
       <link rel="stylesheet" href="styles.css">
+      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet"> 
    </head>
    <body>
       <!-- NAVIGATION BAR -->
@@ -37,9 +38,37 @@
         <div class="playboard" id="playboard">
 
             <script>
-               for(let i = 0; i < 25; i++){
-                  document.getElementById('playboard').innerHTML += '<div class="playcart"><p class="playcartword">ANDROID</p></div>'
+               
+               let request = new XMLHttpRequest();
+               request.open('GET', 'data/UY9Y9Q8U.json');
+               request.responseType = 'json';
+               request.send();
+
+               request.onload = function(){
+                  const superHeroes = request.response;
+                  // console.log(superHeroes);
+                  let board = console.log(superHeroes['board'])
+
+                  for(let i = 0; i < 5; i++){
+                     console.log(superHeroes["board"][i][0])
+                  }
+
+                  for(let i = 0; i < 25; i++){
+                     let woord = superHeroes["board"][i][0]
+                     let kleur = superHeroes["board"][i][1]
+                     
+                     // change colors to a nicer color
+                     if(kleur === 'red'){
+                        kleur = '#ff7675'
+                     }else if(kleur === 'blue'){
+                        kleur = '#74b9ff'
+                     }
+
+                  document.getElementById('playboard').innerHTML += '<div class="playcart" style="background-color:'+ kleur +'"><p class="playcartword">' + woord + '</p></div>'
+                  }
                }
+
+               
             </script>
          </div>     
       </div>
