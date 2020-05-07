@@ -2,16 +2,42 @@ body{
     background-color: #121212;
 }
 
+.stats{
+    color: white;
+    padding: 10px;
+}
+
+.stats p{
+    float: left;
+    margin-right: 30px;
+}
+
+.stats input{
+    color: wheat;
+}
+
+.spymaster{
+    position: fixed;
+    bottom: 5px;
+    left: 5px;
+    display: inline-block;
+    color: white;
+}
+.spymaster p{
+    float: left;
+    margin-right: 7px;
+}
+
 .playboardcontainer{
     width: 100%;
 }
 
-.playboard{
+#playboard{
     margin: 0 auto;
     width: 90vh;
 }
 
-#playcart{
+.playcart{
     color: black;
     font-family: 'Roboto', sans-serif;
     text-align: center;
@@ -22,7 +48,7 @@ body{
     border-radius: 20%;
     margin: 3px;
 }
-#playcart:hover{
+.playcart:hover{
     cursor: pointer;
     /* animation: playcartclick 1s; */
 }
