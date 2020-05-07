@@ -69,12 +69,9 @@ class Spel:
         # laatste tegel is de spymaster
         self.bord.append([self.wordlist[24], "#2d3436"])
 
-        return self.bord
+
 
     def everythingUnvisible(self):
-        self.getWordList()
-        self.asignColor()
-
         for tegel in self.bord:
             tegel.append(False)
         return self.bord
@@ -84,6 +81,10 @@ class Spel:
             self.currentTeam = 'blue'
         else:
             self.currentTeam = 'red'
+
+    def playTurn(self):
+        pass
+
 
     def toJson(self):
         verzenden = {
@@ -113,6 +114,5 @@ class Spel:
 spel = Spel()
 spel.getWordList()
 spel.asignColor()
-print(spel.everythingUnvisible())
-spel.toJson()
-print(f"Het speljson file: {spel.getJson()}")
+spel.everythingUnvisible()
+print(spel.toJson())

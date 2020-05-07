@@ -44,8 +44,8 @@
       <!-- GAME STATS BAR -->
       <div class="stats">
          <p class="curplayer">Current Player: RED</p>
-         <p style="color:#ff7675;">Red: 6</p>
-         <p style="color:#74b9ff">Blue: 8</p>
+         <p style="color:#ff7675;">Red: 0</p>
+         <p style="color:#74b9ff">Blue: 0</p>
          <button type="button" class="btn btn-secondary">End turn</button>
       </div>
       
@@ -58,22 +58,16 @@
             <script>
                
                let request = new XMLHttpRequest();
-               request.open('GET', 'data/UY9Y9Q8U.json');
+               request.open('GET', 'data/MSZHIIQR.json');
                request.responseType = 'json';
                request.send();
 
                request.onload = function(){
-                  const superHeroes = request.response;
-                  // console.log(superHeroes);
-                  let board = console.log(superHeroes['board'])
-
-                  for(let i = 0; i < 5; i++){
-                     console.log(superHeroes["board"][i][0])
-                  }
+                  let borddata  = request.response;
 
                   for(let i = 0; i < 25; i++){
-                     let woord = superHeroes["board"][i][0]
-                     let kleur = superHeroes["board"][i][1]
+                     let woord = borddata["board"][i][0]
+                     let kleur = borddata["board"][i][1]
                      
                      // change colors to a nicer color
                      if(kleur === 'red'){
@@ -85,10 +79,38 @@
                   document.getElementById('playboard').innerHTML += '<div class="playcart omgedraaid" style="background-color:'+ kleur +'"><p class="playcartword">' + woord + '</p></div>'
                   }
 
+
+                  
+                  tiles = document.getElementsByClassName("playcart")
                   // draai de tegel om als je er op clickt
-                  $("div").click(function(){
+                  $(tiles).click(function(){
                      $(this).removeClass("omgedraaid")
+                     // geef de click door aan de webserver
+                     // get the word you've clicked
+                     clickedWord = $(this).text()
+                     console.log($(this).text())
+
+
+                     // update the data of the clicked tile
+                     for(let i = 0; i < 25; i++){
+                        if(clickedWord === borddata['board'][i][0]){
+                           tiledata = borddata['board'][i];
+                           if(tiledata[2] === false){
+                              borddata['board'][i][2] = true         
+                           }
+                        }
+                     }
+                     // for(let tegel of borddata['board'][1]){
+                     //    console.log(tegel);
+                     // };
+
+                     newBoardData = JSON.stringify(borddata);
+                     console.log(newBoardData)
+
+                     toJson();
+                     console.log(borddata)
                   });
+
 
                   // als je op de assasin klikt verlies je
                   $("div").click(function(){
@@ -108,6 +130,17 @@
                         $(tiles).addClass("omgedraaid")
                      }
                   }
+
+               
+               function zet(){
+                  const selectedTile = document.getElementById
+               }
+
+               // write the data to the json file
+               function toJson(){
+                  
+                  console.log("Ik stuur het door naar json.")
+               }
                
             </script>
 
