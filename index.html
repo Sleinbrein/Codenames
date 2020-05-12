@@ -35,6 +35,34 @@
                </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
+               <button id="createGame" type="button" class="btn btn-primary">Create a new game</button>
+
+               <!-- CREATE A GAME -->
+               <script>
+
+                  function voegToe(){
+              
+              
+                      let data = {
+                          actie: 'toevoegen'
+                      };
+              
+                      fetch('cgi-bin/createGame.cgi?data=' + JSON.stringify(data))
+                          .then(response => response.json())
+                          .then(data => {
+                              console.log(data);
+                          });
+                  }
+              
+                  $(function(){
+                      $('#createGame').click(function(){
+                          console.log("TESTJEUHEHFASO")
+                          voegToe();
+                      })
+                  })
+                  
+              </script>
+
                <input class="form-control mr-sm-2" type="search" placeholder="Enter a game code..." aria-label="Search">
                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Connect</button>
             </form>
