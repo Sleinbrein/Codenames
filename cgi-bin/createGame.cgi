@@ -8,12 +8,8 @@ import random
 PYTHON FUNCTIES
 '''
 
-def printSomething():
-    # getallen = []
-    # for i in range(10):
-    #     getallen.append(i)
-    # return getallen
-
+def createGame():
+    
     wordlist = []
     with open("words.txt") as file:
          woordendata = file.read()
@@ -21,8 +17,18 @@ def printSomething():
 
     for _ in range(25):
         wordlist.append(lines[random.randrange(0, len(lines))])
-    return wordlist
 
+    # save data the JSON file
+    verzenden = {
+        "board": wordlist,
+        "winner": None
+    }
+
+    # write gamedata to GAMECODE.json file
+    with open("data/" + "AVCDEFGH" + ".json", 'w') as fileoutput:
+        json.dump(verzenden, fileoutput)
+    
+    return wordlist
 
 
 '''
@@ -39,7 +45,7 @@ BEREKEN TE VERZENDEN DATA
 verzenden = dict()
 
 if data['actie'] == 'toevoegen':
-    verzenden['woorden'] = printSomething()
+    verzenden['woorden'] = createGame()
 
 
 '''
