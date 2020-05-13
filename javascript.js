@@ -1,5 +1,5 @@
+// CREATE A NEW GAME
 function createGame() {
-
 
     let data = {
         actie: 'toevoegen'
@@ -33,7 +33,6 @@ function createGame() {
 }
 
 
-
 // when you click on the button "CREATE NEW GAME", create a new game
 $(function () {
     $('#createGame').click(function () {
@@ -43,22 +42,65 @@ $(function () {
 
 
 
-$(function(){
-    $('#connectbutton').click(function(){
-        console.log("Ik connecteerd nu met een bestaand spel")
-    })
-})
 
-function connectToGame(gamecode){
+
+
+
+
+
+// CONNECT TO AN EXISTING GAME
+function connectToGame(){
+
+    // get the gamecode from the input field
+    let gamecode = document.getElementById("inputgamecode").value
+    console.log(gamecode)
+
     let data = {
-        actie: 'connectgame'
-    }
+        actie: 'connectgame',
+        gameID: gamecode
+    };
     fetch('cgi-bin/connectgame.cgi?data=' + JSON.stringify(data))
         .then(response => response.json())
         .then(data => {
             console.log(data);
+
+            // print error message if the gamecode can not be
+            if (data['gameinfo'] === 'Invalid Gamecode!'){
+                alert("This gamekey does not exists!")
+            }else{
+                for (let i = 0; i < 25; i++) {
+                    let woord = data["gameinfo"][i][0]
+                    let kleur = data["gameinfo"][i][1]
+    
+                    // change colors to a nicer color
+                    if (kleur === 'red') {
+                        kleur = '#ff7675'
+                    } else if (kleur === 'blue') {
+                        kleur = '#74b9ff'
+                    }
+    
+                    document.getElementById('playboard').innerHTML += '<div class="playcart omgedraaid" style="background-color:' + kleur + '"><p class="playcartword">' + woord + '</p></div>'
+    
+                }
+            }
         })
 }
+
+$(function(){
+    $('#connectbutton').click(function(){
+        console.log("Ik connecteerd nu met een bestaand spel")
+        connectToGame()
+    })
+})
+
+
+
+
+// CLICK ON A TILE
+function clickontile(){
+
+}
+
 
 
 
