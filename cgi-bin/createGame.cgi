@@ -31,8 +31,6 @@ def createGame():
         firstTeam = 'blue'
         secondTeam = 'red'
 
-    firstTeam = 'red'
-    secondTeam = 'blue'
 
     # geef het startende team 9 woorden in hun kleur
     for i in range(9):
@@ -73,7 +71,7 @@ def createGame():
     }
 
     # write gamedata to GAMECODE.json file
-    with open("data/" + "AVCDEFGH" + ".json", 'w') as fileoutput:
+    with open("data/" + gamecode + ".json", 'w') as fileoutput:
         json.dump(verzenden, fileoutput)
 
     return bord
