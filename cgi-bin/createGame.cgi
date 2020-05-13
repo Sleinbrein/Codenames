@@ -3,6 +3,7 @@
 import json
 import cgi
 import random
+import string
 
 '''
 PYTHON FUNCTIES
@@ -31,6 +32,12 @@ def createGame():
     return wordlist
 
 
+def createGameCode(length=8):
+    gamecode = ''.join(random.choices(string.ascii_uppercase + string.digits, k=length))
+    return gamecode
+
+
+
 '''
 LEES DATA VERSTUURD DOOR JAVASCRIPT IN
 '''
@@ -45,6 +52,7 @@ BEREKEN TE VERZENDEN DATA
 verzenden = dict()
 
 if data['actie'] == 'toevoegen':
+    verzenden['gamecode'] = createGameCode()
     verzenden['woorden'] = createGame()
 
 
