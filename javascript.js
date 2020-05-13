@@ -128,6 +128,82 @@ function clickontile(){
 
 
 
+
+
+
+
+$(function(){
+    $('#refreshbutton').click(function(){
+        refreshTiles()
+    })
+})
+
+//REFRESH THE GAME TILES
+function refreshTiles(){
+    gamecode = $("#gamecode").text();
+    console.log("De tegels worden geupdate!")
+
+
+    let data = {
+        actie: 'refresh',
+        gameID: gamecode
+    };
+
+    fetch('cgi-bin/refreshgame.cgi?data=' + JSON.stringify(data))
+        .then(response => response.json())
+        .then(data => console.log(data));
+
+        for (let i = 0; i < 25; i++) {
+            let woord = data["gameinfo"][i][0]
+            let kleur = data["gameinfo"][i][1]
+
+            // change colors to a nicer color
+            if (kleur === 'red') {
+                kleur = '#ff7675'
+            } else if (kleur === 'blue') {
+                kleur = '#74b9ff'
+            }
+
+            document.getElementById('playboard').innerHTML += '<div class="playcart omgedraaid" style="background-color:' + kleur + '"><p class="playcartword">' + woord + '</p></div>'
+
+            
+        }
+
+        // add an eventlistener on every tile
+        let tegels = document.getElementsByClassName("playcart");
+        Array.from(tegels).forEach(function(tegel){
+            tegel.addEventListener('click', clickontile);
+        });
+        
+        
+
+        // update the stats text
+        // document.getElementById("curplayer").innerHTML = "Current Player: " + data['current_color'].toUpperCase();
+        // document.getElementById("gamecode").innerHTML = "Share this code: " + data['gamecode']
+            // console.log(data["gamedata"][i])
+            // let woord = data["gamedata"][i]
+            // console.log(woord);
+            
+            // if(data["gamedata"][i][2] === True){
+            //     document.getElementById('playboard').innerHTML += '<div class="playcart" style="background-color:' + kleur + '"><p class="playcartword">' + woord + '</p></div>'
+            // }else{
+            //     document.getElementById('playboard').innerHTML += '<div class="playcart omgedraaid" style="background-color:' + kleur + '"><p class="playcartword">' + woord + '</p></div>'
+            // }
+
+    
+
+
+    // $(tegels).each(function(){
+    //     if($(this).hasClass("omgedraaid")){
+    //         console.log($(this).text())
+    //         $(this).removeClass("omgedraaid")
+    //     }
+    // })
+
+}
+
+
+
 //Toggle spymaster when the user clicks to checkbox (we need to remove every "omgedraaid" class from all the playcarts)
 function toggleSpyMaster() {
     const checkbox = document.getElementById("togglespy")
