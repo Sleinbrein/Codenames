@@ -7,17 +7,26 @@ import cgi
 PYTHON FUNCTIES
 '''
 
-def fliptile(woord):
-    return woord
-    # try to open the datafile with the input gamecode if it exsists
-    # filedirectory = "data/" + data['gameID'] + ".json"
-    # filedirectory = "data/EKF7QMDB.json"
+def fliptile(woord, gameID):
+    # open the datafile with the input gamecode
+    gameID = gameID.replace("Share this code: ", "")
+    filedirectory = "data/" + gameID + ".json"
 
-    # with open(filedirectory) as json_file:
-    #     gamedata = json.load(json_file)
-    #     return gamedata
+    with open(filedirectory) as json_file:
+        gamedata = json.load(json_file)
 
-    # return "Ik draai de tegel om server-sided"
+        for tile in gamedata['board']:
+            if tile[0] == woord:
+                # flip the tile if we can
+                if tile[2] == False:
+                    tile[2] = True
+
+
+    # update data to the same file
+    with open(filedirectory, 'w') as f:
+        json.dump(gamedata, f)
+
+    return gamedata['board']
 
 '''
 LEES DATA VERSTUURD DOOR JAVASCRIPT IN
@@ -33,7 +42,7 @@ verzenden = dict()
 
 if data['actie'] == 'fliptile':
     verzenden['gamecode'] = data['gameID']
-    verzenden['lijst'] = fliptile(data['woord'])
+    verzenden['lijst'] = fliptile(data['woord'], data['gameID'])
 
 
 '''
