@@ -91,7 +91,7 @@ function connectToGame() {
                     document.getElementById('playboard').innerHTML += '<div class="playcart omgedraaid" style="background-color:' + kleur + '"><p class="playcartword">' + woord + '</p></div>'
 
                 }
-                
+
                 // add an eventlistener on every tile
                 let tegels = document.getElementsByClassName("playcart");
                 Array.from(tegels).forEach(function (tegel) {
@@ -118,21 +118,32 @@ $(function () {
 
 // CLICK ON A TILE
 function clickontile() {
-    console.log("De tegel wordt omgedraaid!")
-    clickedword = $(this).text()
-    gamecode = $("#gamecode").text();
 
-    let data = {
-        actie: 'fliptile',
-        gameID: gamecode,
-        woord: clickedword
+    
+    if (!(spymasterEnabled())){
+        console.log("De tegel wordt omgedraaid!")
+        clickedword = $(this).text()
+        gamecode = $("#gamecode").text();
+    
+        let data = {
+            actie: 'fliptile',
+            gameID: gamecode,
+            woord: clickedword
+        }
+    
+        fetch('cgi-bin/fliptile.cgi?data=' + JSON.stringify(data))
+            .then(response => response.json())
+            .then(data => console.log(data));
+
+
+        console.log($(this).removeClass("omgedraaid"))
+
+        // The spymaster can not flip a tile!
+    }else{
+        alert("Stop cheating spymaster! A spymaster can't flip tiles!")
     }
 
-    fetch('cgi-bin/fliptile.cgi?data=' + JSON.stringify(data))
-        .then(response => response.json())
-        .then(data => console.log(data));
-
-    console.log($(this).removeClass("omgedraaid"))
+    
 }
 
 
@@ -141,14 +152,10 @@ function clickontile() {
 
 
 
-
-$(function () {
-    $('#refreshbutton').click(function () {
-        updategametiles()
-    })
-})
-
 // UPDATE GAME TILES
+setInterval(updategametiles, 1000);
+
+
 function updategametiles() {
     console.log("Ik update nu alle game-tiles.")
 
@@ -197,6 +204,10 @@ function updategametiles() {
 }
 
 
+function spymasterEnabled() {
+    const checkbox = document.getElementById("togglespy")
+    return checkbox.checked;
+}
 
 
 

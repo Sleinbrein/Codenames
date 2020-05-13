@@ -43,7 +43,7 @@
             </li>
          </ul>
          <form class="form-inline my-2 my-lg-0">
-            <button id="createGame" type="button" class="btn btn-primary">Create a new game</button>
+            <button id="createGame" type="button" class="btn btn-primary" style="margin-right: 5px;">Create a new game</button>
 
             <!-- CREATE A GAME -->
             
@@ -51,7 +51,6 @@
 
             <input id="inputgamecode"class="form-control mr-sm-2" type="search" placeholder="Enter a game code..." aria-label="Search">
             <button id="connectbutton" type="button" class="btn btn-outline-success my-2 my-sm-0">Connect</button>   
-            <button id="refreshbutton" type="button" class="btn btn-warning">REFRESH</button>
             
          </form>
       </div>
@@ -60,8 +59,8 @@
    <!-- GAME STATS BAR -->
    <div class="stats">
       <p id="curplayer"></p>
-      <p style="color:#ff7675;">Red: 0</p>
-      <p style="color:#74b9ff">Blue: 0</p>
+      <p style="color:white; background-color: #ff7675; width: 35px; height: 35px; text-align: center; font-size: 22px; font-weight: bold; border-radius: 8px; margin-right: 8px;">0</p>
+      <p style="color:white; background-color: #74b9ff; width: 35px; height: 35px; text-align: center; font-size: 22px; font-weight: bold; border-radius: 8px;">0</p>
       <button type="button" class="btn btn-secondary">End turn</button>
       <p id="gamecode"></p>
    </div>
