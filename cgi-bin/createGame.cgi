@@ -39,14 +39,12 @@ def createGame():
 
     # geef het startende team 9 woorden in hun kleur
     for i in range(9):
-        createGame.resterende_tegels_firstteam = 9
         bord.append(
             [wordlist[i], firstTeam]
         )
 
     # geef het andere team 8 woorden in hun kleur
     for i in range(9, 17):
-        createGame.resterende_tegels_lastteam = 8
         bord.append(
             [wordlist[i], secondTeam]
         )
@@ -71,6 +69,8 @@ def createGame():
         "gamecode": gamecode,
         "board": bord,
         "current_color": createGame.currentTeam,
+        "resterende_tegels_red": 9,
+        "resterende_tegels_blue": 8,
         "winner": None
     }
 

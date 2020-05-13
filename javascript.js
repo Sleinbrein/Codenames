@@ -107,7 +107,7 @@ function connectToGame() {
 
 $(function () {
     $('#connectbutton').click(function () {
-        console.log("Ik connecteerd nu met een bestaand spel")
+        console.log("Ik connecteer nu met een bestaand spel")
         connectToGame()
     })
 })
@@ -140,7 +140,7 @@ function clickontile() {
 
         // The spymaster can not flip a tile!
     }else{
-        alert("Stop cheating spymaster! A spymaster can't flip tiles!")
+        alert("Stop cheating spymaster! A spymaster can not flip tiles!")
     }
 
     
@@ -157,8 +157,6 @@ setInterval(updategametiles, 1000);
 
 
 function updategametiles() {
-    console.log("Ik update nu alle game-tiles.")
-
 
     let gamecode = $("#gamecode").text()
     console.log(gamecode)
@@ -173,6 +171,7 @@ function updategametiles() {
         .then(data => {
             console.log(data);
 
+            if(data["updateddata"]['board'])
 
             let tiles = document.getElementsByClassName('playcart')
 
@@ -182,7 +181,6 @@ function updategametiles() {
                 let woord = data["updateddata"]['board'][i][0]
                 let kleur = data["updateddata"]['board'][i][1]
                 let omgedraaid = data["updateddata"]['board'][i][2]
-                console.log(omgedraaid)
 
                 // let woord = data["updateddata"]['board'][i]
                 // console.log(woord);
