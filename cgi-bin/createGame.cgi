@@ -9,6 +9,11 @@ import string
 PYTHON FUNCTIES
 '''
 
+def createGameCode(length=8):
+    code = ''.join(random.choices(string.ascii_uppercase + string.digits, k=length))
+    return code
+
+gamecode = createGameCode()
 
 def createGame():
     bord = []
@@ -59,12 +64,9 @@ def createGame():
         tegel.append(False)
 
 
-    # Generate a game code
-    gamecode = createGameCode()
-
     # save data the JSON file
     verzenden = {
-        "gamecode":gamecode,
+        "gamecode": gamecode,
         "board": bord,
         "current_color": createGame.currentTeam,
         "winner": None
@@ -76,10 +78,6 @@ def createGame():
 
     return bord
 
-
-def createGameCode(length=8):
-    gamecode = ''.join(random.choices(string.ascii_uppercase + string.digits, k=length))
-    return gamecode
 
 
 '''
@@ -95,7 +93,7 @@ BEREKEN TE VERZENDEN DATA
 verzenden = dict()
 
 if data['actie'] == 'toevoegen':
-    verzenden['gamecode'] = createGameCode()
+    verzenden['gamecode'] = gamecode
     verzenden['board'] = createGame()
     verzenden['current_color'] = createGame.currentTeam
     verzenden['winner'] = None

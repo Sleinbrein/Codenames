@@ -25,6 +25,14 @@ function createGame() {
 
             }
 
+            // add an eventlistener on every tile
+            let tegels = document.getElementsByClassName("playcart");
+            Array.from(tegels).forEach(function(tegel){
+                tegel.addEventListener('click', clickontile);
+            });
+            
+            
+
             // update the stats text
             document.getElementById("curplayer").innerHTML = "Current Player: " + data['current_color'].toUpperCase();
             document.getElementById("gamecode").innerHTML = "Share this code: " + data['gamecode']
@@ -81,6 +89,7 @@ function connectToGame(){
     
                     document.getElementById('playboard').innerHTML += '<div class="playcart omgedraaid" style="background-color:' + kleur + '"><p class="playcartword">' + woord + '</p></div>'
     
+                    
                 }
             }
         })
@@ -96,9 +105,24 @@ $(function(){
 
 
 
+
 // CLICK ON A TILE
 function clickontile(){
+    console.log("De tegel wordt omgedraaid!")
+    clickedword = $(this).text()
+    gamecode = $("#gamecode").text();
 
+    let data = {
+        actie: 'fliptile',
+        gameID: gamecode,
+        woord: clickedword
+    }
+
+    fetch('cgi-bin/fliptile.cgi?data=' + JSON.stringify(data))
+        .then(response => response.json())
+        .then(data => console.log(data));
+
+    console.log($(this).removeClass("omgedraaid"))
 }
 
 
