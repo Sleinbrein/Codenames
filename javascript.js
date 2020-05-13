@@ -27,11 +27,11 @@ function createGame() {
 
             // add an eventlistener on every tile
             let tegels = document.getElementsByClassName("playcart");
-            Array.from(tegels).forEach(function(tegel){
+            Array.from(tegels).forEach(function (tegel) {
                 tegel.addEventListener('click', clickontile);
             });
-            
-            
+
+
 
             // update the stats text
             document.getElementById("curplayer").innerHTML = "Current Player: " + data['current_color'].toUpperCase();
@@ -57,7 +57,7 @@ $(function () {
 
 
 // CONNECT TO AN EXISTING GAME
-function connectToGame(){
+function connectToGame() {
 
     // get the gamecode from the input field
     let gamecode = document.getElementById("inputgamecode").value
@@ -73,30 +73,32 @@ function connectToGame(){
             console.log(data);
 
             // print error message if the gamecode can not be
-            if (data['gameinfo'] === 'Invalid Gamecode!'){
+            if (data['gameinfo'] === 'Invalid Gamecode!') {
                 alert("This gamekey does not exists!")
-            }else{
+            } else {
                 for (let i = 0; i < 25; i++) {
                     let woord = data["gameinfo"][i][0]
                     let kleur = data["gameinfo"][i][1]
-    
+
                     // change colors to a nicer color
                     if (kleur === 'red') {
                         kleur = '#ff7675'
                     } else if (kleur === 'blue') {
                         kleur = '#74b9ff'
                     }
-    
+
                     document.getElementById('playboard').innerHTML += '<div class="playcart omgedraaid" style="background-color:' + kleur + '"><p class="playcartword">' + woord + '</p></div>'
-    
-                    
+
+
                 }
             }
+            // update the stats text
+            document.getElementById("gamecode").innerHTML = "Share this code: " + data['gamecode']
         })
 }
 
-$(function(){
-    $('#connectbutton').click(function(){
+$(function () {
+    $('#connectbutton').click(function () {
         console.log("Ik connecteerd nu met een bestaand spel")
         connectToGame()
     })
@@ -107,7 +109,7 @@ $(function(){
 
 
 // CLICK ON A TILE
-function clickontile(){
+function clickontile() {
     console.log("De tegel wordt omgedraaid!")
     clickedword = $(this).text()
     gamecode = $("#gamecode").text();
@@ -124,6 +126,69 @@ function clickontile(){
 
     console.log($(this).removeClass("omgedraaid"))
 }
+
+
+
+
+
+
+
+
+$(function () {
+    $('#refreshbutton').click(function () {
+        updategametiles()
+    })
+})
+
+// UPDATE GAME TILES
+function updategametiles() {
+    console.log("Ik update nu alle game-tiles.")
+
+
+    let gamecode = $("#gamecode").text()
+    console.log(gamecode)
+
+    let data = {
+        actie: 'refresh',
+        gameID: gamecode
+    };
+
+    fetch('cgi-bin/updategame.cgi?data=' + JSON.stringify(data))
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+
+
+            let tiles = document.getElementsByClassName('playcart')
+
+            // print error message if the gamecode can not be
+            for (let i = 0; i < 25; i++) {
+
+                let woord = data["updateddata"]['board'][i][0]
+                let kleur = data["updateddata"]['board'][i][1]
+                let omgedraaid = data["updateddata"]['board'][i][2]
+                console.log(omgedraaid)
+
+                // let woord = data["updateddata"]['board'][i]
+                // console.log(woord);
+
+                // change colors to a nicer color
+                if (kleur === 'red') {
+                    kleur = '#ff7675'
+                } else if (kleur === 'blue') {
+                    kleur = '#74b9ff'
+                }
+
+                if (omgedraaid === true){
+                    $(tiles[i]).removeClass("omgedraaid")
+                }
+                
+
+            }
+        })
+}
+
+
 
 
 
