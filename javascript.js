@@ -194,7 +194,16 @@ function updategametiles() {
                     $(tiles[i]).removeClass("omgedraaid")
                 }
 
+            }
 
+            document.getElementById("curplayer").innerHTML = "Current Player: " + data['updateddata']['current_color'].toUpperCase();
+            document.getElementById("remainingred").innerHTML = data['updateddata']["resterende_tegels_red"]
+            document.getElementById("remainingblue").innerHTML = data['updateddata']["resterende_tegels_blue"]
+
+            if(data['updateddata']["resterende_tegels_blue"] == 0){
+                alert("Team BLUE wins!")
+            }else if(data['updateddata']["resterende_tegels_red"] == 0){
+                alert("Team RED wins!")
             }
         })
 }

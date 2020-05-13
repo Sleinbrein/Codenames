@@ -33,6 +33,7 @@ def fliptile(woord, gameID):
                         elif tile[1] == '#8B9FB3': # neutraal
                             #switch team
                             gamedata['current_color'] = 'blue'
+                            
                         elif tile[1] == '#2d3436': # sluipmoordenaar
                             gamedata['winner'] = 'blue'
                     

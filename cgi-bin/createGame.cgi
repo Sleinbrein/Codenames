@@ -29,10 +29,14 @@ def createGame():
     kansgetal = random.randint(0, 1)
     if kansgetal == 0:
         createGame.currentTeam = 'red'
+        createGame.resterende_tegels_red = 9
+        createGame.resterende_tegels_blue = 8
         firstTeam = 'red'
         secondTeam = 'blue'
     else:
         createGame.currentTeam = 'blue'
+        createGame.resterende_tegels_red = 8
+        createGame.resterende_tegels_blue = 9
         firstTeam = 'blue'
         secondTeam = 'red'
 
@@ -69,8 +73,8 @@ def createGame():
         "gamecode": gamecode,
         "board": bord,
         "current_color": createGame.currentTeam,
-        "resterende_tegels_red": 9,
-        "resterende_tegels_blue": 8,
+        "resterende_tegels_red": createGame.resterende_tegels_red,
+        "resterende_tegels_blue": createGame.resterende_tegels_blue,
         "winner": None
     }
 
