@@ -76,6 +76,7 @@ function connectToGame() {
             if (data['gameinfo'] === 'Invalid Gamecode!') {
                 alert("This gamekey does not exists!")
             } else {
+
                 for (let i = 0; i < 25; i++) {
                     let woord = data["gameinfo"][i][0]
                     let kleur = data["gameinfo"][i][1]
@@ -89,9 +90,16 @@ function connectToGame() {
 
                     document.getElementById('playboard').innerHTML += '<div class="playcart omgedraaid" style="background-color:' + kleur + '"><p class="playcartword">' + woord + '</p></div>'
 
-
                 }
+                
+                // add an eventlistener on every tile
+                let tegels = document.getElementsByClassName("playcart");
+                Array.from(tegels).forEach(function (tegel) {
+                    tegel.addEventListener('click', clickontile);
+                });
             }
+
+
             // update the stats text
             document.getElementById("gamecode").innerHTML = "Share this code: " + data['gamecode']
         })
@@ -179,10 +187,10 @@ function updategametiles() {
                     kleur = '#74b9ff'
                 }
 
-                if (omgedraaid === true){
+                if (omgedraaid === true) {
                     $(tiles[i]).removeClass("omgedraaid")
                 }
-                
+
 
             }
         })
