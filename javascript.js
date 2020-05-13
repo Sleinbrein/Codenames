@@ -200,10 +200,18 @@ function updategametiles() {
             document.getElementById("remainingred").innerHTML = data['updateddata']["resterende_tegels_red"]
             document.getElementById("remainingblue").innerHTML = data['updateddata']["resterende_tegels_blue"]
 
+            // CHECK WINNING CONDITIONS
             if(data['updateddata']["resterende_tegels_blue"] == 0){
                 alert("Team BLUE wins!")
+                location.reload()
             }else if(data['updateddata']["resterende_tegels_red"] == 0){
                 alert("Team RED wins!")
+                location.reload()
+            }
+
+            if(data['updateddata']["winner"] !== null){
+                alert("Team " + data['updateddata']["winner"] + " wins!");
+                location.reload()
             }
         })
 }
