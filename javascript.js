@@ -159,7 +159,6 @@ setInterval(updategametiles, 1000);
 function updategametiles() {
 
     let gamecode = $("#gamecode").text()
-    console.log(gamecode)
 
     let data = {
         actie: 'refresh',
@@ -171,7 +170,6 @@ function updategametiles() {
         .then(data => {
             console.log(data);
 
-            if(data["updateddata"]['board'])
 
             let tiles = document.getElementsByClassName('playcart')
 
