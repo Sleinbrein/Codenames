@@ -9,27 +9,74 @@ import string
 PYTHON FUNCTIES
 '''
 
+
 def createGame():
-    
+    bord = []
     wordlist = []
     with open("words.txt") as file:
-         woordendata = file.read()
+        woordendata = file.read()
     lines = woordendata.splitlines()
 
     for _ in range(25):
         wordlist.append(lines[random.randrange(0, len(lines))])
 
+
+    kansgetal = random.randint(0, 1)
+    if kansgetal == 0:
+        createGame.currentTeam = 'red'
+        firstTeam = 'red'
+        secondTeam = 'blue'
+    else:
+        createGame.currentTeam = 'blue'
+        firstTeam = 'blue'
+        secondTeam = 'red'
+
+    firstTeam = 'red'
+    secondTeam = 'blue'
+
+    # geef het startende team 9 woorden in hun kleur
+    for i in range(9):
+        bord.append(
+            [wordlist[i], firstTeam]
+        )
+
+    # geef het andere team 8 woorden in hun kleur
+    for i in range(9, 17):
+        bord.append(
+            [wordlist[i], secondTeam]
+        )
+
+    # 7 neutrale tegels
+    for i in range(17, 24):
+        bord.append(
+            [wordlist[i], "#8B9FB3"]
+        )
+
+    # laatste tegel is de spymaster
+    bord.append([wordlist[24], "#2d3436"])
+
+
+    # draai elke tegel om
+    for tegel in bord:
+        tegel.append(False)
+
+
+    # Generate a game code
+    gamecode = createGameCode()
+
     # save data the JSON file
     verzenden = {
-        "board": wordlist,
+        "gamecode":gamecode,
+        "board": bord,
+        "current_color": createGame.currentTeam,
         "winner": None
     }
 
     # write gamedata to GAMECODE.json file
     with open("data/" + "AVCDEFGH" + ".json", 'w') as fileoutput:
         json.dump(verzenden, fileoutput)
-    
-    return wordlist
+
+    return bord
 
 
 def createGameCode(length=8):
@@ -37,13 +84,11 @@ def createGameCode(length=8):
     return gamecode
 
 
-
 '''
 LEES DATA VERSTUURD DOOR JAVASCRIPT IN
 '''
 
 data = json.loads(cgi.FieldStorage().getvalue('data'))
-
 
 '''
 BEREKEN TE VERZENDEN DATA
@@ -53,8 +98,9 @@ verzenden = dict()
 
 if data['actie'] == 'toevoegen':
     verzenden['gamecode'] = createGameCode()
-    verzenden['woorden'] = createGame()
-
+    verzenden['board'] = createGame()
+    verzenden['current_color'] = createGame.currentTeam
+    verzenden['winner'] = None
 
 '''
 STUUR CGI ANTWOORD TERUG

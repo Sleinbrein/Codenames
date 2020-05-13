@@ -51,6 +51,21 @@
                           .then(response => response.json())
                           .then(data => {
                               console.log(data);
+
+                              for(let i = 0; i < 25; i++){
+                                 let woord = data["board"][i][0]
+                                 let kleur = data["board"][i][1]
+                                 
+                                 // change colors to a nicer color
+                                 if(kleur === 'red'){
+                                    kleur = '#ff7675'
+                                 }else if(kleur === 'blue'){
+                                    kleur = '#74b9ff'
+                                 }
+
+                                 document.getElementById('playboard').innerHTML += '<div class="playcart" style="background-color:'+ kleur +'"><p class="playcartword">' + woord + '</p></div>'
+                              }
+
                           });
                   }
               
@@ -84,29 +99,6 @@
 
             <script>
                
-               let request = new XMLHttpRequest();
-               request.open('GET', 'data/MSZHIIQR.json');
-               request.responseType = 'json';
-               request.send();
-
-               request.onload = function(){
-                  let borddata  = request.response;
-
-                  for(let i = 0; i < 25; i++){
-                     let woord = borddata["board"][i][0]
-                     let kleur = borddata["board"][i][1]
-                     
-                     // change colors to a nicer color
-                     if(kleur === 'red'){
-                        kleur = '#ff7675'
-                     }else if(kleur === 'blue'){
-                        kleur = '#74b9ff'
-                     }
-
-                  document.getElementById('playboard').innerHTML += '<div class="playcart omgedraaid" style="background-color:'+ kleur +'"><p class="playcartword">' + woord + '</p></div>'
-                  }
-
-
                   
                   tiles = document.getElementsByClassName("playcart")
                   // draai de tegel om als je er op clickt
