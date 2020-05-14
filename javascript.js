@@ -1,3 +1,14 @@
+$( document ).ready(function() {
+    $('.stats').hide()
+});
+
+$(function () {
+    $('.stats').click(function () {
+        $(this).fadeOut();
+    })
+})
+
+
 // CREATE A NEW GAME
 function createGame() {
 
@@ -45,6 +56,7 @@ function createGame() {
 $(function () {
     $('.createGame').click(function () {
         $(this).fadeOut();
+        $('.stats').show();
         $('#startuptext').hide();
         createGame();
     })
