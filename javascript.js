@@ -217,6 +217,38 @@ function updategametiles() {
 }
 
 
+
+
+
+// END TURN BUTTON
+$(function () {
+    $('#endturnbutton').click(function () {
+        console.log("Switching teams")
+        endTurn();
+    })
+})
+
+
+function endTurn(){
+
+    let gamecode = $("#gamecode").text()
+
+    let data = {
+        actie: 'endturn',
+        gameID: gamecode
+    }
+
+    fetch('cgi-bin/switchteam.cgi?data=' + JSON.stringify(data))
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+            })
+
+
+
+}
+
+
 function spymasterEnabled() {
     const checkbox = document.getElementById("togglespy")
     return checkbox.checked;
