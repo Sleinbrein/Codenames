@@ -22,8 +22,10 @@ def createGame():
         woordendata = file.read()
     lines = woordendata.splitlines()
 
-    for _ in range(25):
-        wordlist.append(lines[random.randrange(0, len(lines))])
+    while len(wordlist) != 25:
+        if lines[random.randrange(0, len(lines))] not in wordlist:
+            wordlist.append(lines[random.randrange(0, len(lines))])
+
 
 
     kansgetal = random.randint(0, 1)
