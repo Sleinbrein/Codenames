@@ -276,11 +276,12 @@ function toggleSpyMaster() {
 
     if (checkbox.checked) {
         $(tiles).removeClass("omgedraaid");
-        setInterval(updateSpymasterColors, 1000)
+        var refreshcolors = setInterval(updateSpymasterColors, 1000)
     } else {
+        console.log("CLEAR INTERVAL")
+        clearInterval(refreshcolors);
         $(tiles).addClass("omgedraaid")
         $(tiles).fadeTo("slow", 1);
-        clearInterval();
     }
 
 
@@ -304,15 +305,16 @@ function updateSpymasterColors() {
         .then(data => {
             console.log(data)
 
+            if (checkbox.checked){
+                $(tiles).removeClass("omgedraaid")
 
-            $(tiles).removeClass("omgedraaid")
-
-            console.log(data['selectedColors'])
-            for (let i = 0; i < data['selectedColors'].length; i++) {
-                if (data['selectedColors'][i] === false) {
-                    $(tiles[i]).fadeTo("slow", 0.25);
-                } else {
-                    $(tiles[i]).fadeTo("slow", 1);
+                console.log(data['selectedColors'])
+                for (let i = 0; i < data['selectedColors'].length; i++) {
+                    if (data['selectedColors'][i] === false) {
+                        $(tiles[i]).fadeTo("slow", 0.25);
+                    } else {
+                        $(tiles[i]).fadeTo("slow", 1);
+                    }
                 }
             }
         })
