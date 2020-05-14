@@ -1,5 +1,5 @@
 body{
-    animation: backgroundanimation 20s ease-in-out infinite;
+    /* animation: backgroundanimation 20s ease-in-out infinite; */
     background-color: #121212;
 }
 
@@ -23,6 +23,8 @@ body{
 }
 
 #gamecode{
+    font-weight: 700;
+    font-family: 'Roboto', sans-serif;
     margin-left: 30px;
     margin-bottom: 0px;   
 }
@@ -93,6 +95,7 @@ body{
 }
 .playcart:hover{
     cursor: pointer;
+    opacity: 90%;
     /* animation: playcartclick 1s; */
 }
 

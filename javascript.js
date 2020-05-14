@@ -1,12 +1,6 @@
-$( document ).ready(function() {
+$(document).ready(function () {
     $('.stats').hide()
 });
-
-$(function () {
-    $('.stats').click(function () {
-        $(this).fadeOut();
-    })
-})
 
 
 // CREATE A NEW GAME
@@ -124,6 +118,8 @@ function connectToGame() {
 $(function () {
     $('#connectbutton').click(function () {
         console.log("Ik connecteer nu met een bestaand spel")
+        $('.stats').show();
+        $('#startuptext').hide();
         connectToGame()
     })
 })
@@ -135,18 +131,18 @@ $(function () {
 // CLICK ON A TILE
 function clickontile() {
 
-    
-    if (!(spymasterEnabled())){
+
+    if (!(spymasterEnabled())) {
         console.log("De tegel wordt omgedraaid!")
         clickedword = $(this).text()
         gamecode = $("#gamecode").text();
-    
+
         let data = {
             actie: 'fliptile',
             gameID: gamecode,
             woord: clickedword
         }
-    
+
         fetch('cgi-bin/fliptile.cgi?data=' + JSON.stringify(data))
             .then(response => response.json())
             .then(data => console.log(data));
@@ -155,11 +151,11 @@ function clickontile() {
         console.log($(this).removeClass("omgedraaid"))
 
         // The spymaster can not flip a tile!
-    }else{
+    } else {
         alert("Stop cheating spymaster! A spymaster can not flip tiles!")
     }
 
-    
+
 }
 
 
@@ -217,15 +213,15 @@ function updategametiles() {
             document.getElementById("remainingblue").innerHTML = data['updateddata']["resterende_tegels_blue"]
 
             // CHECK WINNING CONDITIONS
-            if(data['updateddata']["resterende_tegels_blue"] == 0){
+            if (data['updateddata']["resterende_tegels_blue"] == 0) {
                 alert("Team BLUE wins!")
                 location.reload()
-            }else if(data['updateddata']["resterende_tegels_red"] == 0){
+            } else if (data['updateddata']["resterende_tegels_red"] == 0) {
                 alert("Team RED wins!")
                 location.reload()
             }
 
-            if(data['updateddata']["winner"] !== null){
+            if (data['updateddata']["winner"] !== null) {
                 alert("Team " + data['updateddata']["winner"] + " wins!");
                 location.reload()
             }
@@ -245,7 +241,7 @@ $(function () {
 })
 
 
-function endTurn(){
+function endTurn() {
 
     let gamecode = $("#gamecode").text()
 
@@ -255,10 +251,10 @@ function endTurn(){
     }
 
     fetch('cgi-bin/switchteam.cgi?data=' + JSON.stringify(data))
-            .then(response => response.json())
-            .then(data => {
-                console.log(data)
-            })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+        })
 
 
 
@@ -275,12 +271,49 @@ function spymasterEnabled() {
 
 //Toggle spymaster when the user clicks to checkbox (we need to remove every "omgedraaid" class from all the playcarts)
 function toggleSpyMaster() {
-    const checkbox = document.getElementById("togglespy")
-    const tiles = document.getElementsByClassName('playcart')
+    const checkbox = document.getElementById("togglespy");
+    const tiles = document.getElementsByClassName('playcart');
+
     if (checkbox.checked) {
-        $(tiles).removeClass("omgedraaid")
+        $(tiles).removeClass("omgedraaid");
+        setInterval(updateSpymasterColors, 1000)
     } else {
         $(tiles).addClass("omgedraaid")
+        $(tiles).fadeTo("slow", 1);
+        clearInterval();
     }
+
+
 }
 
+function updateSpymasterColors() {
+
+    const checkbox = document.getElementById("togglespy")
+    const tiles = document.getElementsByClassName('playcart')
+
+    let gamecode = $("#gamecode").text()
+
+    let data = {
+        actie: 'getselectedcolors',
+        gameID: gamecode
+    }
+
+
+    fetch('cgi-bin/spymastercolors.cgi?data=' + JSON.stringify(data))
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+
+
+            $(tiles).removeClass("omgedraaid")
+
+            console.log(data['selectedColors'])
+            for (let i = 0; i < data['selectedColors'].length; i++) {
+                if (data['selectedColors'][i] === false) {
+                    $(tiles[i]).fadeTo("slow", 0.25);
+                } else {
+                    $(tiles[i]).fadeTo("slow", 1);
+                }
+            }
+        })
+}
