@@ -43,14 +43,14 @@ function createGame() {
 
 // when you click on the button "CREATE NEW GAME", create a new game
 $(function () {
-    $('#createGame').click(function () {
+    $('.createGame').click(function () {
         $(this).fadeOut();
+        $('#startuptext').hide();
         createGame();
     })
 })
 
 
-$('statscontainer').hide();
 
 
 

@@ -1,4 +1,5 @@
 body{
+    animation: backgroundanimation 20s ease-in-out infinite;
     background-color: #121212;
 }
 
@@ -71,7 +72,7 @@ body{
 }
 
 .playboardcontainer{
-    width: 100%;
+    margin: 0 auto;
 }
 
 #playboard{
@@ -102,6 +103,18 @@ body{
 
 
 
+#startuptext{
+    font-family: 'Roboto Condensed', sans-serif;
+    text-align: center;
+    color: white;
+    margin: 200px auto;
+}
+
+#startuptext h1,h2{
+    animation: woblytext 5s infinite ease-in-out;
+}
+
+
 .omgedraaid{
     background-color: #ecf0f1    !important;
     color: black;
@@ -130,3 +143,33 @@ body{
         transform: rotate(360deg);
     }
 } */
+
+
+
+
+@keyframes backgroundanimation{
+    0%{
+        background-color: black;
+    }20%{
+        background-color: #5f27cd;
+    }40%{
+        background-color: #5352ed;
+    }60%{
+        background-color: #70a1ff;
+    }100%{
+        background-color: black;
+    }
+}
+
+@keyframes woblytext{
+    0%{
+        font-size: 3rem;
+        opacity: 60%;
+    }50%{
+        letter-spacing: 2px;
+        opacity: 100%;
+    }100%{
+        font-size: 3rem;
+        opacity: 60%;
+    }
+}
