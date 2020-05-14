@@ -67,6 +67,9 @@ def createGame():
     for tegel in bord:
         tegel.append(False)
 
+    # shuffle de tegels
+    random.shuffle(bord)
+
 
     # save data the JSON file
     verzenden = {
