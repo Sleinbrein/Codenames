@@ -4,14 +4,6 @@ import json
 import cgi
 import os.path
 
-'''
-PYTHON FUNCTIES
-'''
-
-
-def printSomething():
-    return "Hello World"
-
 
 '''
 LEES DATA VERSTUURD DOOR JAVASCRIPT IN
@@ -35,7 +27,6 @@ if data['actie'] == 'connectgame':
     else:
         verzenden['gameinfo'] = "Invalid Gamecode!"
 
-    verzenden['lijst'] = printSomething()
     verzenden['gamecode'] = data['gameID']
 
 '''
