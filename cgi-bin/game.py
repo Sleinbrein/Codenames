@@ -147,3 +147,27 @@ def fliptile(woord, gameID):
         json.dump(gamedata, f)
 
     return gamedata['board']
+
+
+
+
+
+
+
+
+# SPYMASTER COLORS
+
+def getSelectedColors(gameID):
+    # open the datafile with the input gamecode
+    gameID = gameID.replace("Share this code: ", "")
+    filedirectory = "data/" + gameID + ".json"
+
+    with open(filedirectory) as json_file:
+        gamedata = json.load(json_file)
+
+        # array van booleans
+        chosenWords = []
+        for word in gamedata['board']:
+            chosenWords.append(word[2])
+
+        return chosenWords

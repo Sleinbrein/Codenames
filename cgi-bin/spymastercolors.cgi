@@ -2,27 +2,7 @@
 
 import json
 import cgi
-
-'''
-PYTHON FUNCTIES
-'''
-
-def getSelectedColors(gameID):
-    # open the datafile with the input gamecode
-    gameID = gameID.replace("Share this code: ", "")
-    filedirectory = "data/" + gameID + ".json"
-
-    with open(filedirectory) as json_file:
-        gamedata = json.load(json_file)
-
-        # array van booleans
-        chosenWords = []
-        for word in gamedata['board']:
-            chosenWords.append(word[2])
-
-        return chosenWords
-
-
+import game
 
 '''
 LEES DATA VERSTUURD DOOR JAVASCRIPT IN
@@ -37,7 +17,7 @@ BEREKEN TE VERZENDEN DATA
 verzenden = dict()
 
 if data['actie'] == 'getselectedcolors':
-    verzenden['selectedColors'] = getSelectedColors(data['gameID'])
+    verzenden['selectedColors'] = game.getSelectedColors(data['gameID'])
 
 
 '''

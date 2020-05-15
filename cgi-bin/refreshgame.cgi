@@ -3,26 +3,7 @@
 import json
 import cgi
 
-'''
-PYTHON FUNCTIES
-'''
 
-
-'''Refresh de tiles wanneer deze methode wordt aangeroepen zodat alle spelers dezelfde informatie zien.'''
-# def refreshgame(gameID):
-#     # try to open the datafile with the input gamecode if it exsists
-#     gameID = gameID.replace("Share this code: ", "")
-#     filedirectory = "data/" + gameID + ".json"
-
-#     with open(filedirectory) as json_file:
-#         gamedata = json.load(json_file)
-
-#         return gamedata
-
-
-'''
-LEES DATA VERSTUURD DOOR JAVASCRIPT IN
-'''
 
 data = json.loads(cgi.FieldStorage().getvalue('data'))
 
