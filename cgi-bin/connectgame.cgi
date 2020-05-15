@@ -36,7 +36,7 @@ if data['actie'] == 'connectgame':
         verzenden['gameinfo'] = "Invalid Gamecode!"
 
     verzenden['lijst'] = printSomething()
-    verzenden['testje'] = data['gameID']
+    verzenden['gamecode'] = data['gameID']
 
 '''
 STUUR CGI ANTWOORD TERUG

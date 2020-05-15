@@ -22,17 +22,23 @@ def createGame():
         woordendata = file.read()
     lines = woordendata.splitlines()
 
-    for _ in range(25):
-        wordlist.append(lines[random.randrange(0, len(lines))])
+    while len(wordlist) != 25:
+        if lines[random.randrange(0, len(lines))] not in wordlist:
+            wordlist.append(lines[random.randrange(0, len(lines))])
+
 
 
     kansgetal = random.randint(0, 1)
     if kansgetal == 0:
         createGame.currentTeam = 'red'
+        createGame.resterende_tegels_red = 9
+        createGame.resterende_tegels_blue = 8
         firstTeam = 'red'
         secondTeam = 'blue'
     else:
         createGame.currentTeam = 'blue'
+        createGame.resterende_tegels_red = 8
+        createGame.resterende_tegels_blue = 9
         firstTeam = 'blue'
         secondTeam = 'red'
 
@@ -63,12 +69,17 @@ def createGame():
     for tegel in bord:
         tegel.append(False)
 
+    # shuffle de tegels
+    random.shuffle(bord)
+
 
     # save data the JSON file
     verzenden = {
         "gamecode": gamecode,
         "board": bord,
         "current_color": createGame.currentTeam,
+        "resterende_tegels_red": createGame.resterende_tegels_red,
+        "resterende_tegels_blue": createGame.resterende_tegels_blue,
         "winner": None
     }
 

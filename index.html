@@ -19,6 +19,7 @@
 
    <!-- FONTS -->
    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet"> 
 
    <!-- SCRIPTS -->
    <script src="javascript.js"></script> 
@@ -27,7 +28,7 @@
 
 <body>
    <!-- NAVIGATION BAR -->
-   <nav class="navbar navbar-expand-lg navbar-light bg-light">
+   <nav class="navbar navbar-expand navbar-light bg-light">
       <a class="navbar-brand" href="#"><b>CODENAMES</b></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -43,28 +44,31 @@
             </li>
          </ul>
          <form class="form-inline my-2 my-lg-0">
-            <button id="createGame" type="button" class="btn btn-primary">Create a new game</button>
+            <button type="button" class="btn btn-primary createGame" style="margin-right: 5px;">Create a new game</button>
 
             <!-- CREATE A GAME -->
+
             
 
 
             <input id="inputgamecode"class="form-control mr-sm-2" type="search" placeholder="Enter a game code..." aria-label="Search">
-            <button id="connectbutton" type="button" class="btn btn-outline-success my-2 my-sm-0">Connect</button>
-            <button id = "refreshbutton"type="button" class="btn btn-warning">REFRESH</button>
+            <button id="connectbutton" type="button" class="btn btn-outline-success my-2 my-sm-0">Connect</button>   
             
          </form>
       </div>
    </nav>
 
    <!-- GAME STATS BAR -->
-   <div class="stats">
-      <p id="curplayer"></p>
-      <p style="color:#ff7675;">Red: 0</p>
-      <p style="color:#74b9ff">Blue: 0</p>
-      <button type="button" class="btn btn-secondary">End turn</button>
-      <p id="gamecode"></p>
+   <div id="statscontainer">
+      <div class="stats">
+         <p id="curplayer"></p>
+         <p id="remainingred">0</p>
+         <p id="remainingblue">0</p>
+         <button id="endturnbutton"type="button" class="btn btn-secondary">End turn</button>
+         <p id="gamecode"></p>
+      </div>
    </div>
+
 
 
 
@@ -72,8 +76,16 @@
 
       <div id="playboard">
 
+
+         <div id="startuptext">
+             <h1 style="font-size: 4rem;">WOOOSH IT LOOKS EMPTY HERE</h1>
+            <h2>LETS START A GAME!</h2>
+            <button type="button" class="btn btn-primary createGame" style="margin-right: 5px;">Create a new game</button>
+         </div>
+        
+
          <!-- SPYMASTER TOGGLE -->
-         <div class="spymaster">
+         <div class="spymaster stats">
             <p>Spymaster</p>
             <input id='togglespy' type="checkbox" onclick="toggleSpyMaster()">
          </div>

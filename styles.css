@@ -1,12 +1,57 @@
 body{
+    /* animation: backgroundanimation 20s ease-in-out infinite; */
     background-color: #121212;
 }
 
+#statscontainer{
+    margin: 20px auto;
+}
 .stats{
+    display: flex;
+
+    float: center;
+    align-items: center;
+    justify-content: space-around;
+    margin: 0 auto;
+    width: 40%;
     color: white;
-    padding: 10px;
 }
 
+#curplayer{
+    margin-bottom: 0px;
+    margin-right: 20px;
+}
+
+#gamecode{
+    font-weight: 700;
+    font-family: 'Roboto', sans-serif;
+    margin-left: 30px;
+    margin-bottom: 0px;   
+}
+
+#remainingred{
+    margin-bottom: 0px;
+    color:white;
+    background-color: #ff7675; 
+    width: 35px; height: 35px; 
+    text-align: center; 
+    font-size: 22px; font-weight: bold; 
+    border-radius: 8px; 
+}
+
+#remainingblue{
+    margin-bottom: 0px;
+    color:white; 
+    background-color: #74b9ff;
+    width: 35px; 
+    height: 35px; 
+    text-align: center; 
+    font-size: 22px; 
+    font-weight: bold; 
+    border-radius: 8px;
+}
+
+/* 
 .stats p{
     float: left;
     margin-right: 30px;
@@ -14,7 +59,7 @@ body{
 
 .stats input{
     color: wheat;
-}
+} */
 
 .spymaster{
     position: fixed;
@@ -29,7 +74,7 @@ body{
 }
 
 .playboardcontainer{
-    width: 100%;
+    margin: 0 auto;
 }
 
 #playboard{
@@ -50,12 +95,26 @@ body{
 }
 .playcart:hover{
     cursor: pointer;
+    opacity: 90%;
     /* animation: playcartclick 1s; */
 }
 
 
 .playcartword{
     line-height: 150px;
+}
+
+
+
+#startuptext{
+    font-family: 'Roboto Condensed', sans-serif;
+    text-align: center;
+    color: white;
+    margin: 200px auto;
+}
+
+#startuptext h1,h2{
+    animation: woblytext 5s infinite ease-in-out;
 }
 
 
@@ -87,3 +146,33 @@ body{
         transform: rotate(360deg);
     }
 } */
+
+
+
+
+@keyframes backgroundanimation{
+    0%{
+        background-color: black;
+    }20%{
+        background-color: #5f27cd;
+    }40%{
+        background-color: #5352ed;
+    }60%{
+        background-color: #70a1ff;
+    }100%{
+        background-color: black;
+    }
+}
+
+@keyframes woblytext{
+    0%{
+        font-size: 3rem;
+        opacity: 60%;
+    }50%{
+        letter-spacing: 2px;
+        opacity: 100%;
+    }100%{
+        font-size: 3rem;
+        opacity: 60%;
+    }
+}
