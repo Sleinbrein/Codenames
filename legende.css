@@ -1,0 +1,49 @@
+#uitlegcontainer{
+    text-align: center;
+    margin: 100px auto;
+    display: flex;
+    justify-content: space-evenly;
+    width: 70%;
+}
+
+body{
+    background-color: whitesmoke;
+    text-align: center;
+}
+
+
+#uitlegcontainer div{
+    margin: 0 auto;
+    border-radius: 30%;
+}
+
+#teamred{
+    background-color: #ff7675;
+    width: 150px;
+    height: 150px;
+}
+
+#teamblue{
+    background-color: #74b9ff;
+    width: 150px;
+    height: 150px;
+}
+
+
+
+#neutral{
+    background-color: rgb(139, 159, 179);
+    width: 150px;
+    height: 150px;
+}
+
+#assassin{
+    background-color:rgb(45, 52, 54);
+    width: 150px;
+    height: 150px;
+}
+
+
+#dontclickme:active{
+
+}

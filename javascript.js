@@ -192,9 +192,6 @@ function updategametiles() {
                 let kleur = data["updateddata"]['board'][i][1]
                 let omgedraaid = data["updateddata"]['board'][i][2]
 
-                // let woord = data["updateddata"]['board'][i]
-                // console.log(woord);
-
                 // change colors to a nicer color
                 if (kleur === 'red') {
                     kleur = '#ff7675'

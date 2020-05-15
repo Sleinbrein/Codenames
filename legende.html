@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Codenames | Colors explained</title>
+<link rel="stylesheet" href="legende.css">
+   <!-- JQUERY -->
+   <script src="jquery-3.5.1.min.js"></script>
+</head>
+<body>
+
+<h1>Codenames: All four colors explained</h1>
+
+<div id="uitlegcontainer">
+    <div>
+        <h3>Team RED</h3>
+        <div id="teamred"></div>
+        <p>This color represents team RED.</p>
+    </div>
+    
+    <div>
+        <h3>Team BLUE</h3>
+        <div id="teamblue"></div>
+        <p>This color represents team BLUE.</p>
+    </div>
+
+    <div>
+        <h3>Neutral</h3>
+        <div id="neutral"></div>
+        <p>This is just a neutral tile.</p>
+    </div>
+
+    <div id="dontclickme">
+        <h3>The Assassin</h3>
+        <div id="assassin"></div>
+        <p>I'm the assasin, if you click me, you'll lose!</p>
+    </div>
+
+
+    <script>
+        $("#dontclickme").click(function(){
+            alert("You lose! :)")
+        })
+    </script>
+
+
+</div>
+
+
+</body>
+</html> 
