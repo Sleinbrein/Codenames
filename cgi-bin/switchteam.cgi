@@ -20,7 +20,6 @@ verzenden = dict()
 if data['actie'] == 'endturn':
     verzenden['updateddata'] = game.switchTeam(data['gameID'])
 
-
 '''
 STUUR CGI ANTWOORD TERUG
 '''

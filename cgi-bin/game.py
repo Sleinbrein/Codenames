@@ -199,3 +199,16 @@ def switchTeam(gameID):
         json.dump(gamedata, fileoutput)
 
     return gamedata
+
+
+
+#UPDATEGAME
+def refreshgame(gameID):
+    # try to open the datafile with the input gamecode if it exsists
+    gameID = gameID.replace("Share this code: ", "")
+    filedirectory = "data/" + gameID + ".json"
+
+    with open(filedirectory) as json_file:
+        gamedata = json.load(json_file)
+
+        return gamedata
